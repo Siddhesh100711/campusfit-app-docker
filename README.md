@@ -1,6 +1,6 @@
 # CampusFit Application
 
-A Node.js student registration application for learning Docker.
+A Node.js student registration application for learning Docker and Kubernetes.
 
 ## 🚀 Quick Start
 

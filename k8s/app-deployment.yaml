@@ -20,6 +20,19 @@ spec:
       containers:
       - name: campusfit-app
         image: siddhesh0710/campusfit-app:v1
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
 
         ports:
         - containerPort: 3000

@@ -96,30 +96,35 @@ lsof -ti:3000 | xargs kill -9
 
 ### Beyond the Original Assignment
 
-After successfully containerizing the application with Docker and Docker Compose, the application was also deployed on Kubernetes using Minikube.
+After successfully containerizing the application with Docker and Docker Compose, the application was deployed on Kubernetes using Minikube to demonstrate container orchestration, scaling, configuration management, persistence, and self-healing capabilities.
 
 ### Kubernetes Components Implemented
 
+* Namespace
 * Deployment
 * ReplicaSet
 * Pods
 * Services (NodePort & ClusterIP)
 * ConfigMaps
 * Secrets
+* Health Probes (Liveness & Readiness)
 * Persistent Volumes (PV)
 * Persistent Volume Claims (PVC)
+* Resource Requests & Limits
 
 ### Kubernetes Project Structure
 
 ```text
 k8s/
+├── namespace.yaml
 ├── app-deployment.yaml
 ├── app-service.yaml
 ├── configmap.yaml
 ├── mongo-deployment.yaml
 ├── mongo-service.yaml
 ├── mongo-pvc.yaml
-└── secret-example.yaml
+├── secret-example.yaml
+└── screenshots/
 ```
 
 ### Docker Hub Image
@@ -131,6 +136,8 @@ siddhesh0710/campusfit-app:v1
 ### Deploy on Kubernetes
 
 ```bash
+kubectl apply -f k8s/namespace.yaml
+
 kubectl apply -f k8s/mongo-pvc.yaml
 kubectl apply -f k8s/mongo-deployment.yaml
 kubectl apply -f k8s/mongo-service.yaml
@@ -146,6 +153,9 @@ kubectl apply -f k8s/app-service.yaml
 
 ```bash
 kubectl get all
+kubectl get pvc
+kubectl get configmap
+kubectl get secrets
 ```
 
 ### Access the Application
@@ -184,8 +194,22 @@ Persistent Volume (PV)
 * Persistent database storage using PV/PVC
 * Self-healing Pods using Deployments and ReplicaSets
 * Horizontal scaling through replica management
+* Health monitoring using Liveness and Readiness Probes
+* Resource management using CPU and Memory Requests/Limits
+* Namespace-based resource isolation
 
+### Documentation & Screenshots
+
+Additional project documentation can be found in:
+
+```text
+docs/kubernetes-report.md
 ```
+
+Deployment screenshots are available in:
+
+```text
+k8s/screenshots/
 ```
 
 

@@ -20,6 +20,16 @@ spec:
       containers:
       - name: campusfit-app
         image: siddhesh0710/campusfit-app:v1
+        
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+
         livenessProbe:
           httpGet:
             path: /health

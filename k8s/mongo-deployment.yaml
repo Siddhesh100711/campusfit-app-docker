@@ -7,6 +7,9 @@ metadata:
 spec:
   replicas: 1
 
+  strategy:
+    type: Recreate
+
   selector:
     matchLabels:
       app: mongodb
@@ -23,10 +26,16 @@ spec:
 
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
-          value: campusfit_user
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: MONGO_USERNAME
 
         - name: MONGO_INITDB_ROOT_PASSWORD
-          value: campusfit_password
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: MONGO_PASSWORD
 
         volumeMounts:
         - name: mongo-storage

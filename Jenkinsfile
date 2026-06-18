@@ -5,10 +5,18 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Cloning source code'
+                echo 'Source code checked out successfully'
+            }
+        }
 
-                git branch: 'main',
-                    url: 'https://github.com/Siddhesh100711/campusfit-app-docker.git'
+        stage('Build') {
+            steps {
+                echo 'Building Docker image'
+
+                sh '''
+                docker build -t campusfit-app:${BUILD_NUMBER} .
+                docker tag campusfit-app:${BUILD_NUMBER} campusfit-app:latest
+                '''
             }
         }
 

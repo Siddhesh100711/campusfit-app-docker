@@ -45,7 +45,19 @@ pipeline {
             		'''
        		    }
    	    }
-        }        
+	}
+
+	stage('Deploy') {
+   	    steps {
+        	echo 'Deploying to Kubernetes'
+
+        	sh '''
+        	kubectl apply -f k8s/
+        	kubectl rollout restart deployment campusfit-app
+        	'''
+    	    }
+	}	
+                
 
     }
 }

@@ -20,6 +20,7 @@ spec:
       containers:
       - name: campusfit-app
         image: siddhesh0710/campusfit-app:latest
+        imagePullPolicy: Always
         
         resources:
           requests:

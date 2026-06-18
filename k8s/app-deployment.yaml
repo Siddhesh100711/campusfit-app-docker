@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: campusfit-app
-        image: siddhesh0710/campusfit-app:v1
+        image: siddhesh0710/campusfit-app:latest
         
         resources:
           requests:
